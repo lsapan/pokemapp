@@ -70,7 +70,7 @@ class PokeData {
         NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(expireMapPokemon), userInfo: nil, repeats: true)
     }
     
-    func loadServerLocation() {
+    @objc func loadServerLocation() {
         Alamofire.request(.GET, "\(ServerEndpoint)/loc")
             .responseJSON { response in
                 if let json = response.result.value {
@@ -79,6 +79,7 @@ class PokeData {
                 } else {
                     self.delegate?.failedToLoadServerLocation()
                 }
+                NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: #selector(self.loadServerLocation), userInfo: nil, repeats: false)
         }
     }
     
