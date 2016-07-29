@@ -15,7 +15,6 @@
 		A3C5AD571D46EB20003F7A4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3C5AD551D46EB20003F7A4C /* LaunchScreen.storyboard */; };
 		A3C5AD5F1D46EC67003F7A4C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C5AD5E1D46EC67003F7A4C /* MapKit.framework */; };
 		A3C5AD611D46EDE4003F7A4C /* PokeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AD601D46EDE4003F7A4C /* PokeData.swift */; };
-		A3C5AD631D46F356003F7A4C /* PokeDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AD621D46F356003F7A4C /* PokeDataDelegate.swift */; };
 		A3C5ADFC1D46FAEE003F7A4C /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C5AD651D46FAED003F7A4C /* 1.png */; };
 		A3C5ADFD1D46FAEE003F7A4C /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C5AD661D46FAED003F7A4C /* 10.png */; };
 		A3C5ADFE1D46FAEE003F7A4C /* 100.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C5AD671D46FAED003F7A4C /* 100.png */; };
@@ -169,6 +168,7 @@
 		A3C5AE921D46FAEE003F7A4C /* 99.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C5ADFB1D46FAEE003F7A4C /* 99.png */; };
 		A3D1A7641D4C172F00C33FD2 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D1A7631D4C172F00C33FD2 /* Config.swift */; };
 		A3D1A7661D4C179400C33FD2 /* Config.swift.example in Resources */ = {isa = PBXBuildFile; fileRef = A3D1A7651D4C179400C33FD2 /* Config.swift.example */; };
+		A3D1A7681D4C1C5900C33FD2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D1A7671D4C1C5900C33FD2 /* Globals.swift */; };
 		AB92804897DE5E821A5F98BC /* Pods_PokemonGoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3154BEFCEC847A2CC42B44AB /* Pods_PokemonGoMap.framework */; };
 /* End PBXBuildFile section */
 
@@ -185,7 +185,6 @@
 		A3C5AD581D46EB20003F7A4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3C5AD5E1D46EC67003F7A4C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A3C5AD601D46EDE4003F7A4C /* PokeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeData.swift; sourceTree = "<group>"; };
-		A3C5AD621D46F356003F7A4C /* PokeDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeDataDelegate.swift; sourceTree = "<group>"; };
 		A3C5AD651D46FAED003F7A4C /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		A3C5AD661D46FAED003F7A4C /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10.png; sourceTree = "<group>"; };
 		A3C5AD671D46FAED003F7A4C /* 100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 100.png; sourceTree = "<group>"; };
@@ -339,6 +338,7 @@
 		A3C5ADFB1D46FAEE003F7A4C /* 99.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 99.png; sourceTree = "<group>"; };
 		A3D1A7631D4C172F00C33FD2 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		A3D1A7651D4C179400C33FD2 /* Config.swift.example */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Config.swift.example; sourceTree = "<group>"; };
+		A3D1A7671D4C1C5900C33FD2 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		B09AFFDCF35884ABEF0BB1DF /* Pods-PokemonGoMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonGoMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonGoMap/Pods-PokemonGoMap.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -395,8 +395,8 @@
 			isa = PBXGroup;
 			children = (
 				A3C5AD4A1D46EB20003F7A4C /* AppDelegate.swift */,
+				A3D1A7671D4C1C5900C33FD2 /* Globals.swift */,
 				A3C5AD601D46EDE4003F7A4C /* PokeData.swift */,
-				A3C5AD621D46F356003F7A4C /* PokeDataDelegate.swift */,
 				A3C5AD4C1D46EB20003F7A4C /* MapViewController.swift */,
 				A3C5AD4E1D46EB20003F7A4C /* ListViewController.swift */,
 				A3C5AD501D46EB20003F7A4C /* Main.storyboard */,
@@ -847,7 +847,7 @@
 				A3C5AD4B1D46EB20003F7A4C /* AppDelegate.swift in Sources */,
 				A3C5AD611D46EDE4003F7A4C /* PokeData.swift in Sources */,
 				A3C5AD4D1D46EB20003F7A4C /* MapViewController.swift in Sources */,
-				A3C5AD631D46F356003F7A4C /* PokeDataDelegate.swift in Sources */,
+				A3D1A7681D4C1C5900C33FD2 /* Globals.swift in Sources */,
 				A3D1A7641D4C172F00C33FD2 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

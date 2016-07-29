@@ -29,7 +29,7 @@ class ScanLocationAnnotation: MKPointAnnotation {
     
 }
 
-class MapViewController: UIViewController, MKMapViewDelegate, PokeDataDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var followMeButton: UIBarButtonItem!
@@ -44,17 +44,26 @@ class MapViewController: UIViewController, MKMapViewDelegate, PokeDataDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set up location updates
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         
-        PokeData.sharedInstance.delegate = self
+        // Display the user's location on the map
         mapView.showsUserLocation = true
         
+        // Detect long presses to change the server location
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(changeServerLocation))
         mapView.addGestureRecognizer(lpgr)
         
+        // Set the initial tint color for "Follow Me"
         followMeButton.tintColor = UIColor.darkGrayColor()
+        
+        // Register for notifications
+        addEventObserver(.ServerLocationUpdated, observer: self, selector: #selector(didLoadServerLocation))
+        addEventObserver(.MapPokemonAdded, observer: self, selector: #selector(didAddMapPokemon))
+        addEventObserver(.MapPokemonExpired, observer: self, selector: #selector(willExpireMapPokemon))
+        addEventObserver(.LastScanLocationUpdated, observer: self, selector: #selector(didGetScan))
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -99,8 +108,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, PokeDataDelegate, 
         let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.setRegion(region, animated: animated)
     }
-
-    func didLoadServerLocation(location: CLLocationCoordinate2D) {
+    
+    // Events
+    @objc func didLoadServerLocation() {
+        let location = PokeData.sharedInstance.serverLocation!
         if (serverLocationAnnotation == nil) {
             centerMapOnLocation(location, animated: false)
         } else {
@@ -110,33 +121,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, PokeDataDelegate, 
         serverLocationAnnotation!.coordinate = location
         mapView.addAnnotation(serverLocationAnnotation!)
     }
-    
-    func failedToLoadServerLocation() {
-        
-    }
-    
-    func didLoadData(pokemonList: Dictionary<String, MapPokemon>, scans: Dictionary<String, Scan>) {
-        
-    }
-    
-    func failedToLoadData() {
-        
-    }
 
-    func didAddMapPokemon(mapPokemon: MapPokemon) {
+    @objc func didAddMapPokemon(notification: NSNotification) {
+        let mapPokemon = notification.userInfo!["pokemon"] as! MapPokemon
         print("[Map] Adding \(mapPokemon.pokemon.id) (\(mapPokemon.pokemon.name))")
         let annotation = MapPokemonAnnotation(mapPokemon: mapPokemon)
         pokemonAnnotations[mapPokemon.encounterId] = annotation
         mapView.addAnnotation(annotation)
     }
     
-    func willExpireMapPokemon(mapPokemon: MapPokemon) {
+    @objc func willExpireMapPokemon(notification: NSNotification) {
+        let mapPokemon = notification.userInfo!["pokemon"] as! MapPokemon
         print("[Map] Removing \(mapPokemon.pokemon.id) (\(mapPokemon.pokemon.name))")
         mapView.removeAnnotation(pokemonAnnotations[mapPokemon.encounterId]!)
         pokemonAnnotations.removeValueForKey(mapPokemon.encounterId)
     }
     
-    func didGetScan(scan: Scan) {
+    @objc func didGetScan(notification: NSNotification) {
+        print(notification.userInfo)
+        let scan = notification.userInfo!["scan"] as! Scan
         if scanLocationAnnotation == nil {
             scanLocationAnnotation = ScanLocationAnnotation()
             scanLocationAnnotation!.coordinate = scan.location
@@ -148,6 +151,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, PokeDataDelegate, 
         }
     }
     
+    // Search
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(textField.text!, completionHandler: {(placemarks, error) -> Void in
@@ -166,6 +170,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, PokeDataDelegate, 
         return true
     }
     
+    // Follow Me
     @IBAction func toggleFollowMe() {
         if followMeButton.tintColor == UIColor.darkGrayColor() {
             enableFollowMe()

@@ -62,7 +62,6 @@ class PokeData {
     var serverLocation: CLLocationCoordinate2D? = nil
     var pokemonList: Dictionary<String, MapPokemon> = [:]
     var scans: Dictionary<String, Scan> = [:]
-    var delegate: PokeDataDelegate? = nil
     
     init() {
         loadServerLocation()
@@ -75,9 +74,10 @@ class PokeData {
             .responseJSON { response in
                 if let json = response.result.value {
                     self.serverLocation = CLLocationCoordinate2D(latitude: json["lat"] as! Double, longitude: json["lng"] as! Double)
-                    self.delegate?.didLoadServerLocation(self.serverLocation!)
+                    postEvent(.ServerLocationUpdated)
+                    print("[PokeData] Update server location.")
                 } else {
-                    self.delegate?.failedToLoadServerLocation()
+                    print("[PokeData] Failed to update server location!")
                 }
                 NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: #selector(self.loadServerLocation), userInfo: nil, repeats: false)
         }
@@ -86,12 +86,12 @@ class PokeData {
     func setServerLocation(location: CLLocationCoordinate2D) {
         let oldServerLocation = serverLocation
         serverLocation = location
-        delegate?.didLoadServerLocation(serverLocation!)
+        postEvent(.ServerLocationUpdated)
         Alamofire.request(.POST, "\(ServerEndpoint)/next_loc?lat=\(location.latitude)&lon=\(location.longitude)")
             .responseString { response in
                 if response.result.value == nil || response.result.value! != "ok" {
                     self.serverLocation = oldServerLocation
-                    self.delegate?.didLoadServerLocation(self.serverLocation!)
+                    postEvent(.ServerLocationUpdated)
                 }
         }
     }
@@ -107,7 +107,7 @@ class PokeData {
                         if (self.pokemonList[encounterId] == nil) {
                             let pokemon = MapPokemon(json: pokemonData)
                             self.pokemonList[pokemon.encounterId] = pokemon
-                            self.delegate?.didAddMapPokemon(pokemon)
+                            postEvent(.MapPokemonAdded, data: ["pokemon": pokemon])
                         }
                     }
                     
@@ -123,14 +123,13 @@ class PokeData {
                     }
                     
                     if let lastScanData = allScanData.last {
-                        self.delegate?.didGetScan(Scan(json: lastScanData))
+                        postEvent(.LastScanLocationUpdated, data: ["scan": Scan(json: lastScanData)])
                     }
 
                     print("[PokeData] Loaded data!")
-                    self.delegate?.didLoadData(self.pokemonList, scans: self.scans)
+                    postEvent(.DataUpdated)
                 } else {
                     print("[PokeData] Failed to load data!")
-                    self.delegate?.failedToLoadData()
                 }
                 NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(self.loadData), userInfo: nil, repeats: false)
         }
@@ -140,8 +139,8 @@ class PokeData {
         let now = NSDate().timeIntervalSince1970
         for (_, mapPokemon) in pokemonList {
             if mapPokemon.disappearTime.timeIntervalSince1970 < now {
-                self.delegate?.willExpireMapPokemon(mapPokemon)
                 pokemonList.removeValueForKey(mapPokemon.encounterId)
+                postEvent(.MapPokemonExpired, data: ["pokemon": mapPokemon])
             }
         }
     }

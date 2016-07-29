@@ -17,10 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Set the global tint color
+        window?.tintColor = UIColor(red: 255/255.0, green: 78/255.0, blue: 81/255.0, alpha: 1)
+        
+        // Request permission for location
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
         
-        window?.tintColor = UIColor(red: 255/255.0, green: 78/255.0, blue: 81/255.0, alpha: 1)
+        // Start PokeData
+        PokeData.sharedInstance
         
         return true
     }
