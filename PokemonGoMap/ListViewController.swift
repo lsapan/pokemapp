@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  ListViewController.swift
 //  PokemonGoMap
 //
 //  Created by Luke Sapan on 7/25/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class ListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

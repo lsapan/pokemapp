@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="750" y="-345"/>
         </scene>
-        <!--First View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="0Pv-Bi-Jn2">
             <objects>
-                <viewController id="kg3-Dd-4B8" customClass="FirstViewController" customModule="PokemonGoMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kg3-Dd-4B8" customClass="MapViewController" customModule="PokemonGoMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xlT-Fn-Kr8"/>
                         <viewControllerLayoutGuide type="bottom" id="n6w-VM-pBS"/>
@@ -81,7 +81,7 @@
         <!--List-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="PokemonGoMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="ListViewController" customModule="PokemonGoMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>

@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  MapViewController.swift
 //  PokemonGoMap
 //
 //  Created by Luke Sapan on 7/25/16.
@@ -29,7 +29,7 @@ class ScanLocationAnnotation: MKPointAnnotation {
     
 }
 
-class FirstViewController: UIViewController, MKMapViewDelegate, PokeDataDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, PokeDataDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var followMeButton: UIBarButtonItem!

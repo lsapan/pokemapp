@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A3C5AD4B1D46EB20003F7A4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AD4A1D46EB20003F7A4C /* AppDelegate.swift */; };
-		A3C5AD4D1D46EB20003F7A4C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AD4C1D46EB20003F7A4C /* FirstViewController.swift */; };
-		A3C5AD4F1D46EB20003F7A4C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AD4E1D46EB20003F7A4C /* SecondViewController.swift */; };
+		A3C5AD4D1D46EB20003F7A4C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AD4C1D46EB20003F7A4C /* MapViewController.swift */; };
+		A3C5AD4F1D46EB20003F7A4C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AD4E1D46EB20003F7A4C /* ListViewController.swift */; };
 		A3C5AD521D46EB20003F7A4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3C5AD501D46EB20003F7A4C /* Main.storyboard */; };
 		A3C5AD541D46EB20003F7A4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3C5AD531D46EB20003F7A4C /* Assets.xcassets */; };
 		A3C5AD571D46EB20003F7A4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3C5AD551D46EB20003F7A4C /* LaunchScreen.storyboard */; };
@@ -177,8 +177,8 @@
 		41C6E07BFA7E0EA41BBA9B1F /* Pods-PokemonGoMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonGoMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonGoMap/Pods-PokemonGoMap.release.xcconfig"; sourceTree = "<group>"; };
 		A3C5AD471D46EB20003F7A4C /* PokemonGoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonGoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C5AD4A1D46EB20003F7A4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A3C5AD4C1D46EB20003F7A4C /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		A3C5AD4E1D46EB20003F7A4C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		A3C5AD4C1D46EB20003F7A4C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A3C5AD4E1D46EB20003F7A4C /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		A3C5AD511D46EB20003F7A4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A3C5AD531D46EB20003F7A4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3C5AD561D46EB20003F7A4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -397,8 +397,8 @@
 				A3C5AD4A1D46EB20003F7A4C /* AppDelegate.swift */,
 				A3C5AD601D46EDE4003F7A4C /* PokeData.swift */,
 				A3C5AD621D46F356003F7A4C /* PokeDataDelegate.swift */,
-				A3C5AD4C1D46EB20003F7A4C /* FirstViewController.swift */,
-				A3C5AD4E1D46EB20003F7A4C /* SecondViewController.swift */,
+				A3C5AD4C1D46EB20003F7A4C /* MapViewController.swift */,
+				A3C5AD4E1D46EB20003F7A4C /* ListViewController.swift */,
 				A3C5AD501D46EB20003F7A4C /* Main.storyboard */,
 				A3C5AD531D46EB20003F7A4C /* Assets.xcassets */,
 				A3C5AD641D46FAED003F7A4C /* pokemon_icons */,
@@ -843,10 +843,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3C5AD4F1D46EB20003F7A4C /* SecondViewController.swift in Sources */,
+				A3C5AD4F1D46EB20003F7A4C /* ListViewController.swift in Sources */,
 				A3C5AD4B1D46EB20003F7A4C /* AppDelegate.swift in Sources */,
 				A3C5AD611D46EDE4003F7A4C /* PokeData.swift in Sources */,
-				A3C5AD4D1D46EB20003F7A4C /* FirstViewController.swift in Sources */,
+				A3C5AD4D1D46EB20003F7A4C /* MapViewController.swift in Sources */,
 				A3C5AD631D46F356003F7A4C /* PokeDataDelegate.swift in Sources */,
 				A3D1A7641D4C172F00C33FD2 /* Config.swift in Sources */,
 			);
