@@ -1,0 +1,2 @@
+// Set this to something like https://myapp.herokuapp.com or http://12.34.56.78:5000
+let ServerEndpoint = ""
