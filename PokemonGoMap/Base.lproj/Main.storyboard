@@ -78,7 +78,7 @@
             </objects>
             <point key="canvasLocation" x="1500" y="-345"/>
         </scene>
-        <!--Root View Controller-->
+        <!--List View Controller-->
         <scene sceneID="3Ja-LI-ndy">
             <objects>
                 <tableViewController id="mpx-XE-Pyx" customClass="ListViewController" customModule="PokemonGoMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -98,14 +98,14 @@
                                             <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UBb-Hd-a0f">
                                             <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -117,7 +117,24 @@
                             <outlet property="delegate" destination="mpx-XE-Pyx" id="wBy-WO-Jba"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="PUU-Tl-hDW"/>
+                    <navigationItem key="navigationItem" id="PUU-Tl-hDW">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="mcm-17-g1D">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="By Number"/>
+                                <segment title="By Distance"/>
+                                <segment title="By Time"/>
+                            </segments>
+                            <connections>
+                                <action selector="setSortFunc:" destination="mpx-XE-Pyx" eventType="valueChanged" id="c9p-jL-G2o"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sortControl" destination="mcm-17-g1D" id="zD1-Eb-ei3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3w-Eh-4hx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

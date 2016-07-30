@@ -9,25 +9,39 @@
 import UIKit
 
 class ListViewController: UITableViewController {
+    @IBOutlet var sortControl: UISegmentedControl!
+    
     var pokemonList: [MapPokemon] = []
     var sortFunc: ((MapPokemon, MapPokemon) -> Bool)!
     
     override func viewDidLoad() {
-        // Set the initial sortFunc
-        sortFunc = { (p1, p2) -> Bool in
-            if p1.pokemon.id != p2.pokemon.id {
-                return p1.pokemon.id > p2.pokemon.id
-            } else {
-                return p1.distanceKm < p2.distanceKm
-            }
-        }
-        
-        // Build the initial table data
-        buildPokemonList()
+        // Set the initial sortFunc and build initial data
+        setSortFunc(nil)
         
         // Register for notifications
         addEventObserver(.MapPokemonAdded, observer: self, selector: #selector(pokemonAdded))
         addEventObserver(.MapPokemonExpired, observer: self, selector: #selector(pokemonRemoved))
+    }
+    
+    @IBAction func setSortFunc(sender: UISegmentedControl?) {
+        if sortControl.selectedSegmentIndex == 0 {
+            sortFunc = { (p1, p2) -> Bool in
+                if p1.pokemon.id != p2.pokemon.id {
+                    return p1.pokemon.id > p2.pokemon.id
+                } else {
+                    return p1.distanceKm < p2.distanceKm
+                }
+            }
+        } else if sortControl.selectedSegmentIndex == 1 {
+            sortFunc = { (p1, p2) -> Bool in
+                return p1.distanceKm < p2.distanceKm
+            }
+        } else {
+            sortFunc = { (p1, p2) -> Bool in
+                return p1.disappearTime.timeIntervalSince1970 < p2.disappearTime.timeIntervalSince1970
+            }
+        }
+        buildPokemonList()
     }
     
     func buildPokemonList() {
