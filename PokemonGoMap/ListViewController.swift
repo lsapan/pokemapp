@@ -12,7 +12,12 @@ class ListViewController: UITableViewController {
     var pokemonList: [MapPokemon] = []
     
     override func viewDidLoad() {
+        // Build the initial table data
         buildPokemonList()
+        
+        // Register for notifications
+        addEventObserver(.MapPokemonAdded, observer: self, selector: #selector(pokemonAdded))
+        addEventObserver(.MapPokemonExpired, observer: self, selector: #selector(pokemonRemoved))
     }
     
     func buildPokemonList() {
@@ -21,6 +26,30 @@ class ListViewController: UITableViewController {
             return p1.pokemon.id > p2.pokemon.id
         })
         tableView.reloadData()
+    }
+    
+    func pokemonAdded(notification: NSNotification) {
+        let pokemon = notification.userInfo!["pokemon"] as! MapPokemon
+        for (idx, p) in pokemonList.enumerate() {
+            if p.pokemon.id < pokemon.pokemon.id {
+                pokemonList.insert(pokemon, atIndex: idx)
+                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)], withRowAnimation: .Automatic)
+                return
+            }
+        }
+        pokemonList.append(pokemon)
+        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: pokemonList.count - 1, inSection: 0)], withRowAnimation: .Automatic)
+    }
+    
+    func pokemonRemoved(notification: NSNotification) {
+        let pokemon = notification.userInfo!["pokemon"] as! MapPokemon
+        for (idx, p) in pokemonList.enumerate() {
+            if p.encounterId == pokemon.encounterId {
+                pokemonList.removeAtIndex(idx)
+                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)], withRowAnimation: .Automatic)
+                return
+            }
+        }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
