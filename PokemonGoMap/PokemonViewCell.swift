@@ -26,7 +26,7 @@ class PokemonViewCell: UITableViewCell {
     }
     
     func updateTime(notification: NSNotification?){
-        detailTextLabel!.text = "\(pokemon.timeLeft()) - \(pokemon.expirationTime())"
+        detailTextLabel!.text = "\(pokemon.timeLeft()) - \(pokemon.distance())"
     }
     
     override func prepareForReuse() {

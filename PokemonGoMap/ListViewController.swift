@@ -10,8 +10,18 @@ import UIKit
 
 class ListViewController: UITableViewController {
     var pokemonList: [MapPokemon] = []
+    var sortFunc: ((MapPokemon, MapPokemon) -> Bool)!
     
     override func viewDidLoad() {
+        // Set the initial sortFunc
+        sortFunc = { (p1, p2) -> Bool in
+            if p1.pokemon.id != p2.pokemon.id {
+                return p1.pokemon.id > p2.pokemon.id
+            } else {
+                return p1.distanceKm < p2.distanceKm
+            }
+        }
+        
         // Build the initial table data
         buildPokemonList()
         
@@ -22,16 +32,14 @@ class ListViewController: UITableViewController {
     
     func buildPokemonList() {
         pokemonList = Array(PokeData.sharedInstance.pokemonList.values)
-        pokemonList = pokemonList.sort({ (p1, p2) -> Bool in
-            return p1.pokemon.id > p2.pokemon.id
-        })
+        pokemonList = pokemonList.sort(sortFunc)
         tableView.reloadData()
     }
     
     func pokemonAdded(notification: NSNotification) {
         let pokemon = notification.userInfo!["pokemon"] as! MapPokemon
         for (idx, p) in pokemonList.enumerate() {
-            if p.pokemon.id < pokemon.pokemon.id {
+            if sortFunc(pokemon, p) {
                 pokemonList.insert(pokemon, atIndex: idx)
                 tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)], withRowAnimation: .Automatic)
                 return

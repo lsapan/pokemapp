@@ -22,6 +22,7 @@ class MapPokemon {
     let location: CLLocationCoordinate2D
     let pokemon: Pokemon
     let spawnpointId: String
+    var distanceKm: CLLocationDistance = 0
     
     init(json: AnyObject) {
         pokemon = Pokemon(id: json["pokemon_id"] as! Int, name: json["pokemon_name"] as! String)
@@ -29,6 +30,8 @@ class MapPokemon {
         encounterId = json["encounter_id"] as! String
         location = CLLocationCoordinate2D(latitude: json["latitude"] as! Double, longitude: json["longitude"] as! Double)
         spawnpointId = json["spawnpoint_id"] as! String
+        calculateDistance()
+        addEventObserver(.UserLocationUpdated, observer: self, selector: #selector(calculateDistance))
     }
     
     func expirationTime() -> String {
@@ -40,6 +43,24 @@ class MapPokemon {
     
     func image() -> UIImage {
         return UIImage(named: "\(pokemon.id).png")!
+    }
+    
+    func distance() -> String {
+        let miles = distanceKm * 0.000621371
+        if miles > 0.189394 {
+            return String(format: "%.2f miles away", miles)
+        } else {
+            return String(format: "%d feet away", Int(miles * 5280))
+        }
+    }
+    
+    @objc private func calculateDistance() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if let userLocation = appDelegate.currentLocation {
+            distanceKm = userLocation.distanceFromLocation(CLLocation(latitude: location.latitude, longitude: location.longitude))
+        } else {
+            distanceKm = 0
+        }
     }
     
     func timeLeft() -> String {
