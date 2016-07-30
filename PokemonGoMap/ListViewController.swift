@@ -45,22 +45,29 @@ class ListViewController: UITableViewController {
     }
     
     func buildPokemonList() {
-        pokemonList = Array(PokeData.sharedInstance.pokemonList.values)
+        pokemonList = []
+        for pokemon in PokeData.sharedInstance.pokemonList.values {
+            if PokeData.sharedInstance.visiblePokemon.indexOf(pokemon.pokemon.id) != nil {
+                pokemonList.append(pokemon)
+            }
+        }
         pokemonList = pokemonList.sort(sortFunc)
         tableView.reloadData()
     }
     
     func pokemonAdded(notification: NSNotification) {
         let pokemon = notification.userInfo!["pokemon"] as! MapPokemon
-        for (idx, p) in pokemonList.enumerate() {
-            if sortFunc(pokemon, p) {
-                pokemonList.insert(pokemon, atIndex: idx)
-                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)], withRowAnimation: .Automatic)
-                return
+        if PokeData.sharedInstance.visiblePokemon.indexOf(pokemon.pokemon.id) != nil {
+            for (idx, p) in pokemonList.enumerate() {
+                if sortFunc(pokemon, p) {
+                    pokemonList.insert(pokemon, atIndex: idx)
+                    tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)], withRowAnimation: .Automatic)
+                    return
+                }
             }
+            pokemonList.append(pokemon)
+            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: pokemonList.count - 1, inSection: 0)], withRowAnimation: .Automatic)
         }
-        pokemonList.append(pokemon)
-        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: pokemonList.count - 1, inSection: 0)], withRowAnimation: .Automatic)
     }
     
     func pokemonRemoved(notification: NSNotification) {

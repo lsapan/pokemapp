@@ -122,17 +122,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegat
 
     @objc func didAddMapPokemon(notification: NSNotification) {
         let mapPokemon = notification.userInfo!["pokemon"] as! MapPokemon
-        print("[Map] Adding \(mapPokemon.pokemon.id) (\(mapPokemon.pokemon.name))")
-        let annotation = MapPokemonAnnotation(mapPokemon: mapPokemon)
-        pokemonAnnotations[mapPokemon.encounterId] = annotation
-        mapView.addAnnotation(annotation)
+        if PokeData.sharedInstance.visiblePokemon.indexOf(mapPokemon.pokemon.id) != nil {
+            print("[Map] Adding \(mapPokemon.pokemon.id) (\(mapPokemon.pokemon.name))")
+            let annotation = MapPokemonAnnotation(mapPokemon: mapPokemon)
+            pokemonAnnotations[mapPokemon.encounterId] = annotation
+            mapView.addAnnotation(annotation)
+        }
     }
     
     @objc func willExpireMapPokemon(notification: NSNotification) {
         let mapPokemon = notification.userInfo!["pokemon"] as! MapPokemon
-        print("[Map] Removing \(mapPokemon.pokemon.id) (\(mapPokemon.pokemon.name))")
-        mapView.removeAnnotation(pokemonAnnotations[mapPokemon.encounterId]!)
-        pokemonAnnotations.removeValueForKey(mapPokemon.encounterId)
+        if let annotation = pokemonAnnotations[mapPokemon.encounterId] {
+            print("[Map] Removing \(mapPokemon.pokemon.id) (\(mapPokemon.pokemon.name))")
+            mapView.removeAnnotation(annotation)
+            pokemonAnnotations.removeValueForKey(mapPokemon.encounterId)
+        }
     }
     
     @objc func didGetScan(notification: NSNotification) {
