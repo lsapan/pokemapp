@@ -15,6 +15,7 @@ enum Event: String {
     case MapPokemonAdded = "MAP_POKEMON_ADDED"
     case MapPokemonExpired = "MAP_POKEMON_EXPIRED"
     case LastScanLocationUpdated = "LAST_SCAN_LOCATION_UPDATED"
+    case ShowPokemon = "SHOW_POKEMON"
 }
 
 func postEvent(event: Event) {

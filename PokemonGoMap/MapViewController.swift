@@ -64,6 +64,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegat
         addEventObserver(.MapPokemonAdded, observer: self, selector: #selector(didAddMapPokemon))
         addEventObserver(.MapPokemonExpired, observer: self, selector: #selector(willExpireMapPokemon))
         addEventObserver(.LastScanLocationUpdated, observer: self, selector: #selector(didGetScan))
+        addEventObserver(.ShowPokemon, observer: self, selector: #selector(showPokemon))
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -90,7 +91,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegat
             let pokemonAnnotation = annotation as! MapPokemonAnnotation
             let mapPokemon = PokeData.sharedInstance.pokemonList[pokemonAnnotation.encounterId]
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
-            annotationView.image = UIImage(named: "\(mapPokemon!.pokemon.id).png")!
+            annotationView.image = mapPokemon!.image()
             annotationView.canShowCallout = true
             return annotationView
         }
@@ -138,7 +139,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegat
     }
     
     @objc func didGetScan(notification: NSNotification) {
-        print(notification.userInfo)
         let scan = notification.userInfo!["scan"] as! Scan
         if scanLocationAnnotation == nil {
             scanLocationAnnotation = ScanLocationAnnotation()
@@ -149,6 +149,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegat
                 self.scanLocationAnnotation!.coordinate = scan.location
             })
         }
+    }
+    
+    @objc func showPokemon(notification: NSNotification) {
+        let mapPokemon = notification.userInfo!["pokemon"] as! MapPokemon
+        let region = MKCoordinateRegion(center: mapPokemon.location, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+        mapView.setRegion(region, animated: true)
     }
     
     // Search

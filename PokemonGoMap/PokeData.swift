@@ -37,6 +37,10 @@ class MapPokemon {
         dayTimePeriodFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocale().localeIdentifier)
         return dayTimePeriodFormatter.stringFromDate(disappearTime)
     }
+    
+    func image() -> UIImage {
+        return UIImage(named: "\(pokemon.id).png")!
+    }
 }
 
 class Scan {
