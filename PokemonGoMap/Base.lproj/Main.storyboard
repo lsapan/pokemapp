@@ -87,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pokecell" textLabel="Jqb-XP-HbW" detailTextLabel="UBb-Hd-a0f" style="IBUITableViewCellStyleSubtitle" id="VJ6-GS-mkO">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pokecell" textLabel="Jqb-XP-HbW" detailTextLabel="UBb-Hd-a0f" style="IBUITableViewCellStyleSubtitle" id="VJ6-GS-mkO" customClass="PokemonViewCell" customModule="PokemonGoMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VJ6-GS-mkO" id="j1G-hE-4l0">

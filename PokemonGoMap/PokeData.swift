@@ -41,6 +41,28 @@ class MapPokemon {
     func image() -> UIImage {
         return UIImage(named: "\(pokemon.id).png")!
     }
+    
+    func timeLeft() -> String {
+        let timeLeft: NSTimeInterval = calculateTimeLeft()
+        if (timeLeft <= 0){
+            return "Disappearing..."
+        }
+        return timeLeftToString(timeLeft) + " remaining"
+    }
+    
+    private func calculateTimeLeft() -> NSTimeInterval {
+        return disappearTime.timeIntervalSince1970 - NSDate().timeIntervalSince1970
+    }
+    
+    private func timeLeftToString(timeLeft: NSTimeInterval) -> String {
+        let _seconds = Int(timeLeft % 60)
+        let _minutes = Int((timeLeft / 60) % 60)
+        let _hours = Int(timeLeft / 3600)
+        let hours: String = _hours > 0 ? "\(_hours):" : ""
+        let mins: String = _minutes < 10 ? "0\(_minutes):" : "\(_minutes):"
+        let secs: String = _seconds < 10 ? "0\(_seconds)" : "\(_seconds)"
+        return hours + mins + secs
+    }
 }
 
 class Scan {
@@ -70,7 +92,7 @@ class PokeData {
     init() {
         loadServerLocation()
         loadData()
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(expireMapPokemon), userInfo: nil, repeats: true)
+        addEventObserver(.Tick, observer: self, selector: #selector(expireMapPokemon))
     }
     
     @objc func loadServerLocation() {

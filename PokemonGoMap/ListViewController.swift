@@ -61,13 +61,9 @@ class ListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("pokecell")!
+        let cell = tableView.dequeueReusableCellWithIdentifier("pokecell") as! PokemonViewCell
         let pokemon = pokemonList[indexPath.row]
-        
-        cell.textLabel!.text = pokemon.pokemon.name
-        cell.detailTextLabel!.text = pokemon.expirationTime()
-        cell.imageView!.image = pokemon.image()
-        
+        cell.renderPokemon(pokemon)
         return cell
     }
     

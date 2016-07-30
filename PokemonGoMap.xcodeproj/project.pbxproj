@@ -169,6 +169,7 @@
 		A3D1A7641D4C172F00C33FD2 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D1A7631D4C172F00C33FD2 /* Config.swift */; };
 		A3D1A7661D4C179400C33FD2 /* Config.swift.example in Resources */ = {isa = PBXBuildFile; fileRef = A3D1A7651D4C179400C33FD2 /* Config.swift.example */; };
 		A3D1A7681D4C1C5900C33FD2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D1A7671D4C1C5900C33FD2 /* Globals.swift */; };
+		A3D1A76A1D4C2D9300C33FD2 /* PokemonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D1A7691D4C2D9300C33FD2 /* PokemonViewCell.swift */; };
 		AB92804897DE5E821A5F98BC /* Pods_PokemonGoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3154BEFCEC847A2CC42B44AB /* Pods_PokemonGoMap.framework */; };
 /* End PBXBuildFile section */
 
@@ -339,6 +340,7 @@
 		A3D1A7631D4C172F00C33FD2 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		A3D1A7651D4C179400C33FD2 /* Config.swift.example */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Config.swift.example; sourceTree = "<group>"; };
 		A3D1A7671D4C1C5900C33FD2 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		A3D1A7691D4C2D9300C33FD2 /* PokemonViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonViewCell.swift; sourceTree = "<group>"; };
 		B09AFFDCF35884ABEF0BB1DF /* Pods-PokemonGoMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonGoMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonGoMap/Pods-PokemonGoMap.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -399,6 +401,7 @@
 				A3C5AD601D46EDE4003F7A4C /* PokeData.swift */,
 				A3C5AD4C1D46EB20003F7A4C /* MapViewController.swift */,
 				A3C5AD4E1D46EB20003F7A4C /* ListViewController.swift */,
+				A3D1A7691D4C2D9300C33FD2 /* PokemonViewCell.swift */,
 				A3C5AD501D46EB20003F7A4C /* Main.storyboard */,
 				A3C5AD531D46EB20003F7A4C /* Assets.xcassets */,
 				A3C5AD641D46FAED003F7A4C /* pokemon_icons */,
@@ -846,6 +849,7 @@
 				A3C5AD4F1D46EB20003F7A4C /* ListViewController.swift in Sources */,
 				A3C5AD4B1D46EB20003F7A4C /* AppDelegate.swift in Sources */,
 				A3C5AD611D46EDE4003F7A4C /* PokeData.swift in Sources */,
+				A3D1A76A1D4C2D9300C33FD2 /* PokemonViewCell.swift in Sources */,
 				A3C5AD4D1D46EB20003F7A4C /* MapViewController.swift in Sources */,
 				A3D1A7681D4C1C5900C33FD2 /* Globals.swift in Sources */,
 				A3D1A7641D4C172F00C33FD2 /* Config.swift in Sources */,

@@ -27,7 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Start PokeData
         PokeData.sharedInstance
         
+        // Broadcast ticks every second to update
+        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
+        
         return true
+    }
+    
+    func tick() {
+        postEvent(.Tick)
     }
 
     func applicationWillResignActive(application: UIApplication) {
