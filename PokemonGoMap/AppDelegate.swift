@@ -10,10 +10,11 @@ import UIKit
 import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
-    var locationManager: CLLocationManager?
+    var locationManager: CLLocationManager!
+    var currentLocation: CLLocation?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -22,7 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Request permission for location
         locationManager = CLLocationManager()
-        locationManager?.requestWhenInUseAuthorization()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
         // Start PokeData
         PokeData.sharedInstance
@@ -35,6 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func tick() {
         postEvent(.Tick)
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        currentLocation = newLocation
+        postEvent(.UserLocationUpdated)
     }
 
     func applicationWillResignActive(application: UIApplication) {

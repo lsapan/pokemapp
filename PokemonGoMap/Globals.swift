@@ -10,6 +10,7 @@ import Foundation
 
 
 enum Event: String {
+    case UserLocationUpdated = "USER_LOCATION_UPDATED"
     case ServerLocationUpdated = "SERVER_LOCATION_UPDATED"
     case DataUpdated = "DATA_UPDATED"
     case MapPokemonAdded = "MAP_POKEMON_ADDED"

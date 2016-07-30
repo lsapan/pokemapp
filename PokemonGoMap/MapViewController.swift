@@ -29,7 +29,7 @@ class ScanLocationAnnotation: MKPointAnnotation {
     
 }
 
-class MapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var followMeButton: UIBarButtonItem!
@@ -38,19 +38,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegat
     var serverLocationAnnotationView: MKPinAnnotationView?
     var scanLocationAnnotation: ScanLocationAnnotation?
     var pokemonAnnotations: Dictionary<String, MapPokemonAnnotation> = [:]
-    var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set up location updates
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         // Display the user's location on the map
         mapView.showsUserLocation = true
+        currentLocation = appDelegate.currentLocation
         
         // Detect long presses to change the server location
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(changeServerLocation))
@@ -65,6 +61,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegat
         addEventObserver(.MapPokemonExpired, observer: self, selector: #selector(willExpireMapPokemon))
         addEventObserver(.LastScanLocationUpdated, observer: self, selector: #selector(didGetScan))
         addEventObserver(.ShowPokemon, observer: self, selector: #selector(showPokemon))
+        addEventObserver(.UserLocationUpdated, observer: self, selector: #selector(userLocationUpdated))
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -200,7 +197,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegat
         serverLocationAnnotationView?.hidden = (followMeButton.tintColor == nil)
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+    func userLocationUpdated(notification: NSNotification) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let newLocation = appDelegate.currentLocation!
         if currentLocation == nil || currentLocation!.distanceFromLocation(newLocation) > 20 {
             currentLocation = newLocation
             if followMeButton.tintColor == nil {
