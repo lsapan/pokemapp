@@ -117,11 +117,13 @@ class PokeData {
     }
     
     @objc func loadServerLocation() {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         Alamofire.request(.GET, "\(ServerEndpoint)/loc")
             .responseJSON { response in
                 if let json = response.result.value {
                     self.serverLocation = CLLocationCoordinate2D(latitude: json["lat"] as! Double, longitude: json["lng"] as! Double)
                     postEvent(.ServerLocationUpdated)
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     print("[PokeData] Update server location.")
                 } else {
                     print("[PokeData] Failed to update server location!")
