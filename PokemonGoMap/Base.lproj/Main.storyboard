@@ -52,7 +52,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="zQA-2L-WzK">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="gear" id="aoi-db-jhb"/>
+                        <barButtonItem key="leftBarButtonItem" image="gear" id="aoi-db-jhb">
+                            <connections>
+                                <segue destination="coK-tk-eKV" kind="show" id="EpK-0m-VJ0"/>
+                            </connections>
+                        </barButtonItem>
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" id="Xkm-zY-uwu">
                             <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -77,6 +81,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wer-P7-2hP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1500" y="-345"/>
+        </scene>
+        <!--Visible Pokemon-->
+        <scene sceneID="LsY-Mi-f8n">
+            <objects>
+                <tableViewController id="coK-tk-eKV" customClass="VisiblePokemonViewController" customModule="PokemonGoMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Gru-0k-Jld">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pokecell" textLabel="XwA-Gv-AdL" style="IBUITableViewCellStyleDefault" id="SN3-VM-380">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SN3-VM-380" id="vjz-dt-Xv8">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XwA-Gv-AdL">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="coK-tk-eKV" id="WcP-jX-jxO"/>
+                            <outlet property="delegate" destination="coK-tk-eKV" id="h6I-WC-roS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Visible Pokemon" id="Skv-bR-qXR"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xvt-lw-DEC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2208" y="-345"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="3Ja-LI-ndy">
@@ -120,7 +162,7 @@
                     <navigationItem key="navigationItem" id="PUU-Tl-hDW">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="mcm-17-g1D">
-                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <rect key="frame" x="170" y="7" width="260" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="By Number"/>
@@ -138,7 +180,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3w-Eh-4hx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1570" y="424"/>
+            <point key="canvasLocation" x="1500" y="424"/>
         </scene>
         <!--List-->
         <scene sceneID="p4t-gh-HA3">

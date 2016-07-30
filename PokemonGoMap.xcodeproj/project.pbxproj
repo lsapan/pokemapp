@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A31CBD571D4C471C00D62935 /* VisiblePokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31CBD561D4C471C00D62935 /* VisiblePokemonViewController.swift */; };
 		A3C5AD4B1D46EB20003F7A4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AD4A1D46EB20003F7A4C /* AppDelegate.swift */; };
 		A3C5AD4D1D46EB20003F7A4C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AD4C1D46EB20003F7A4C /* MapViewController.swift */; };
 		A3C5AD4F1D46EB20003F7A4C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5AD4E1D46EB20003F7A4C /* ListViewController.swift */; };
@@ -176,6 +177,7 @@
 /* Begin PBXFileReference section */
 		3154BEFCEC847A2CC42B44AB /* Pods_PokemonGoMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonGoMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C6E07BFA7E0EA41BBA9B1F /* Pods-PokemonGoMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonGoMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonGoMap/Pods-PokemonGoMap.release.xcconfig"; sourceTree = "<group>"; };
+		A31CBD561D4C471C00D62935 /* VisiblePokemonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisiblePokemonViewController.swift; sourceTree = "<group>"; };
 		A3C5AD471D46EB20003F7A4C /* PokemonGoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonGoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C5AD4A1D46EB20003F7A4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3C5AD4C1D46EB20003F7A4C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				A3C5AD4C1D46EB20003F7A4C /* MapViewController.swift */,
 				A3C5AD4E1D46EB20003F7A4C /* ListViewController.swift */,
 				A3D1A7691D4C2D9300C33FD2 /* PokemonViewCell.swift */,
+				A31CBD561D4C471C00D62935 /* VisiblePokemonViewController.swift */,
 				A3C5AD501D46EB20003F7A4C /* Main.storyboard */,
 				A3C5AD531D46EB20003F7A4C /* Assets.xcassets */,
 				A3C5AD641D46FAED003F7A4C /* pokemon_icons */,
@@ -853,6 +856,7 @@
 				A3C5AD4D1D46EB20003F7A4C /* MapViewController.swift in Sources */,
 				A3D1A7681D4C1C5900C33FD2 /* Globals.swift in Sources */,
 				A3D1A7641D4C172F00C33FD2 /* Config.swift in Sources */,
+				A31CBD571D4C471C00D62935 /* VisiblePokemonViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

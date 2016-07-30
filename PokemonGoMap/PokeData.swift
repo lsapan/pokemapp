@@ -109,8 +109,20 @@ class PokeData {
     var serverLocation: CLLocationCoordinate2D? = nil
     var pokemonList: Dictionary<String, MapPokemon> = [:]
     var scans: Dictionary<String, Scan> = [:]
+    var visiblePokemon: [Int] = []
     
     init() {
+        // Load list of visible pokemon (or create it if it doesn't exist)
+        if let list = NSUserDefaults.standardUserDefaults().arrayForKey("visiblePokemon") {
+            visiblePokemon = list as! [Int]
+        } else {
+            for i in 1...151 {
+                visiblePokemon.append(i)
+            }
+            NSUserDefaults.standardUserDefaults().setValue(visiblePokemon, forKey: "visiblePokemon")
+        }
+        
+        // Begin loading data
         loadServerLocation()
         loadData()
         addEventObserver(.Tick, observer: self, selector: #selector(expireMapPokemon))
